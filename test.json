@@ -412,5 +412,5 @@
 {"player":{"name":"ゴエモンさんTwitch","teamId":2,"pos":{"x":-14652.9,"y":21638.5,"z":1847.5},"angles":{"x":0,"y":92.0215,"z":0},"currentHealth":75,"maxHealth":100,"shieldHealth":25,"shieldMaxHealth":100,"teamName":"Team1","squadIndex":0,"nucleusHash":"b34cb73ccfe29f8b719b05d484f607f18081ef549c5c510edf119268732f38a879c9ccb3fe8047bf3774b398b8fed36cc3c76bf1b764c33c4b54130ad8dddc0b","character":"Wraith","skin":"AirshipAssassin"},"ammoType":"shotgun","amountUsed":14,"oldAmmoCount":14,"newAmmoCount":0,"timestamp":1675514441,"category":"ammoUsed"},
 {"player":{"name":"ゴエモンさんTwitch","teamId":2,"pos":{"x":-27021.8,"y":10106.1,"z":915.125},"angles":{"x":0,"y":110.391,"z":0},"currentHealth":0,"maxHealth":0,"shieldHealth":0,"shieldMaxHealth":0,"teamName":"Team1","squadIndex":0,"nucleusHash":"b34cb73ccfe29f8b719b05d484f607f18081ef549c5c510edf119268732f38a879c9ccb3fe8047bf3774b398b8fed36cc3c76bf1b764c33c4b54130ad8dddc0b","character":"Wraith","skin":"AirshipAssassin"},"canReconnect":false,"timestamp":1675514468,"category":"playerDisconnected"},
 {"state":"Resolution","timestamp":1675514603,"category":"gameStateChanged"},
-{"state":"Postmatch","timestamp":1675514623,"category":"gameStateChanged"}
-]
+{"state":"Postmatch","timestamp":1675514623,"category":"gameStateChanged"}]
+
