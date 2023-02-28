@@ -17,6 +17,7 @@ def epoch_to_datetime(epoch):
     return datetime.datetime.fromtimestamp(epoch, tz=ZoneInfo('Asia/Tokyo')).strftime('%Y-%m-%d %H:%M:%S')
 
 def get_json_path():
+    #print('def get_json_path()')
     basePath = "C:\\Users\\"+getpass.getuser()+"\\Saved Games\\Respawn\\Apex\\assets\\temp\\live_api"
     jsonPathes = glob.glob(basePath + "\\*")
     print('Found '+str(len(jsonPathes))+(' JSON files.' if len(jsonPathes) > 1 else ' JSON file.'))
@@ -77,8 +78,11 @@ def get_new_elements(jsonDict):
         return NewData
     
 def newMatch_init():
+    print('def newMatch_init()')
     global PlayerData
+    global LastData
     PlayerData = []
+    LastData = []
 
 
 def process_event(event):
@@ -86,7 +90,7 @@ def process_event(event):
     # Server events
     if event['category'] == 'init':
         print('['+epoch_to_datetime(event['timestamp'])+'][Init]: [GameVersion: '+event['gameVersion']+']') if outputAllEvents else None
-        newMatch_init()
+        
 
 
     # Observer events
@@ -169,6 +173,7 @@ def process_event(event):
 
 
 def main():
+    
     global json_path
     if matchRunning:
         jsonDic = get_json_data(json_path)
@@ -177,6 +182,7 @@ def main():
             process_event(e)
     else:
         json_path = get_json_path()
+        newMatch_init()
 
 def forDebug():
     jsonDic = get_json_data(json_path)

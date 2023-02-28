@@ -1,10 +1,10 @@
 import schedule, time
 
 
-import getlog_test
+import getlog
 
 def job():
-    getlog_test.main()
+    getlog.main()
 
 
 def main():
