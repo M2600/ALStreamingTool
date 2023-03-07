@@ -132,8 +132,8 @@ def process_event(event):
     # Combat Events
     elif event['category'] == 'playerDamaged':#
         pass
-    elif event['category'] == 'playerKilled':#
-        pass
+    elif event['category'] == 'playerKilled':
+        print('['+epoch_to_datetime(event['timestamp'])+'][PlayerKilled]: [attacker: '+event['attacker']['name']+']'+', [victim: '+event['victim']['name']+']'+', [weapon: '+event['weapon']+']') if outputAllEvents else None
     elif event['category'] == 'playerDowned':#
         pass
     elif event['category'] == 'playerAssist':#
