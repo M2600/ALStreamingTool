@@ -14,6 +14,8 @@ matchRunning = False
 
 
 def epoch_to_datetime(epoch):
+    if type(epoch) == str:
+        epoch = int(epoch)
     return datetime.datetime.fromtimestamp(epoch, tz=ZoneInfo('Asia/Tokyo')).strftime('%Y-%m-%d %H:%M:%S')
 
 def get_json_path():
@@ -29,12 +31,15 @@ def get_json_path():
                 jsonDict = json.loads(textData)
             except json.decoder.JSONDecodeError as e:
                 # The match is still running.
-                if e.msg == 'Expecting value':
+                print('Load json error message: ('+e.msg+')')
+                if e.msg == "Expecting ',' delimiter":
                     # Remove last comma, spaces and newlines and add a closing bracket.
                     print('Found JSON file with running match: "'+p+'"')
                     global matchRunning
                     matchRunning = True
                     return p
+                else:
+                    print('Found invalid JSON file: "'+p+'"')
             else:
                 # The match has finished.
                 print('Valid JSON file')
@@ -51,11 +56,12 @@ def get_json_data(jsonPath):
         except json.decoder.JSONDecodeError as e:
             # The match is still running.
             print(e.msg)
-            if e.msg == 'Expecting value':
+            if e.msg == "Expecting ',' delimiter":
                 # Remove last comma, spaces and newlines and add a closing bracket.
-                jsonDict = json.loads(textData.rstrip()[:-1]+']') 
+                jsonDict = json.loads(textData.rstrip()+']')#[:-1]+']') 
         else:
             # The match has finished.
+            jsonDict = None
             print('Valid JSON file')
             global matchRunning
             matchRunning = False
@@ -101,7 +107,7 @@ def process_event(event):
 
     # Match Informations
     elif event['category'] == 'matchSetup':
-        print('['+epoch_to_datetime(event['timestamp'])+'][MatchSetup]: [Map: '+event['map']+']'+', [PlaylistName: '+event['playlistName']+']'+', [PlayistDesc: '+event['playlistDesc']+']'+', [AimAssistOn: '+str(event['aimAssistOn'])+']'+', [ServerId: '+event['serverId']+']'+', [AnonymousMode: '+str(event['anonymousMode'])+']') if outputAllEvents else None
+        print('['+epoch_to_datetime(event['timestamp'])+'][MatchSetup]: [Map: '+event['map']+']'+', [PlaylistName: '+event['playlistName']+']'+', [PlayistDesc: '+event['playlistDesc']+']'+', [AimAssistOn: '+str(event['aimAssistOn'])+']'+', [ServerId: '+event['serverId']+']'+']') if outputAllEvents else None
 
     elif event['category'] == 'gameStateChanged':
         print('['+epoch_to_datetime(event['timestamp'])+'][GameStateChanged]: [State: '+event['state']+']') if outputAllEvents else None
